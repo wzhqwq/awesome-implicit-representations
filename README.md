@@ -1,28 +1,7 @@
 # Awesome Implicit Neural Representations [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 A curated list of resources on implicit neural representations, inspired by [awesome-computer-vision](https://github.com/jbhuang0604/awesome-computer-vision).
 
-## Hiring graduate students!
-I am looking for graduate students to join my new lab at MIT CSAIL in July 2022. 
-If you are excited about neural implicit representations, neural rendering, neural scene representations, and their applications
-in vision, graphics, and robotics, apply [here](https://gradapply.mit.edu/eecs/apply/login/)! In the webform, you can choose me as "Potential Adviser", 
-and in your SoP, please describe how our research interests are well-aligned. The deadline is Dec 15th!
-
-## Disclaimer
-This list does __not aim to be exhaustive__, as implicit neural representations are a rapidly growing research field with
-hundreds of papers to date. Instead, it lists the papers that I give my students to read, which introduce key concepts & foundations of 
-implicit neural representations across applications. I will therefore generally __not merge pull requests__. 
-This is not an evaluation of the quality or impact of a paper, but rather the result of my and my students' research interests.
-
-However, if you see potential for another list that is broader or narrower in scope, get in touch, and I'm happy 
-to link to it right here and contribute to it as well as I can!
-
-Disclosure: I am an author on the following papers.
-* [Scene Representation Networks: Continuous 3D-Structure-Aware Neural Scene Representations](https://vsitzmann.github.io/srns/)
-* [MetaSDF: MetaSDF: Meta-Learning Signed Distance Functions](https://vsitzmann.github.io/metasdf/)
-* [Implicit Neural Representations with Periodic Activation Functions](https://vsitzmann.github.io/siren/)
-* [Inferring Semantic Information with 3D Neural Scene Representations](https://www.computationalimaging.org/publications/semantic-srn/)
-* [Light Field Networks: Neural Scene Representations with Single-Evaluation Rendering](vsitzmann.github.io/lfns/)
-
+列表经过简化，以方便进行毕设调研
 
 ## Table of contents
 - [What are implicit neural representations?](#what-are-implicit-neural-representations) 
@@ -77,9 +56,10 @@ imitation tasks.
 ## Implicit Neural Representations of Geometry
 The following three papers first (and concurrently) demonstrated that implicit neural representations outperform grid-, point-, and mesh-based 
 representations in parameterizing geometry and seamlessly allow for learning priors over shapes.
-* [DeepSDF: Learning Continuous Signed Distance Functions for Shape Representation](https://arxiv.org/abs/1901.05103) (Park et al. 2019) 
-* [Occupancy Networks: Learning 3D Reconstruction in Function Space](https://arxiv.org/abs/1812.03828) (Mescheder et al. 2019)
-* [IM-Net: Learning Implicit Fields for Generative Shape Modeling](https://arxiv.org/abs/1812.02822) (Chen et al. 2018)
+
+- [ ] [DeepSDF: Learning Continuous Signed Distance Functions for Shape Representation](https://arxiv.org/abs/1901.05103) (Park et al. 2019) 
+- [ ] [Occupancy Networks: Learning 3D Reconstruction in Function Space](https://arxiv.org/abs/1812.03828) (Mescheder et al. 2019)
+- [ ] [IM-Net: Learning Implicit Fields for Generative Shape Modeling](https://arxiv.org/abs/1812.02822) (Chen et al. 2018)
 
 Since then, implicit neural representations have achieved state-of-the-art-results in 3D computer vision:
 * [Sal: Sign agnostic learning of shapes from raw data](https://github.com/matanatz/SAL) (Atzmon et al. 2019) shows how we may learn SDFs from raw data (i.e., without ground-truth signed distance values)
@@ -92,31 +72,6 @@ demonstrates how we may parameterize room-scale 3D scenes via a single implicit 
 proposes to learn unsigned distance fields from raw point clouds, doing away with the requirement of water-tight surfaces.
 
 ## Implicit representations of Geometry and Appearance 
-### From 2D supervision only (“inverse graphics”)
-3D scenes can be represented as 3D-structured neural scene representations, i.e., neural implicit representations that map a 
-3D coordinate to a representation of whatever is at that 3D coordinate. This then requires the formulation of a neural renderer,
-in particular, a ray-marcher, which performs rendering by repeatedly sampling the neural implicit representation along a ray.
-* [Scene Representation Networks: Continuous 3D-Structure-Aware Neural Scene Representations](https://vsitzmann.github.io/srns/) proposed to learn an implicit representations
- of 3D shape and geometry given only 2D images, via a differentiable ray-marcher, and generalizes across 3D scenes for 
- reconstruction from a single image via hyper-networks. This was demonstrated for single-object scenes, but also for simple room-scale scenes (see talk).
-* [Differentiable volumetric rendering: Learning implicit 3d representations without 3d supervision](https://github.com/autonomousvision/differentiable_volumetric_rendering) (Niemeyer et al. 2020), 
-replaces LSTM-based ray-marcher in SRNs with a fully-connected neural network & analytical gradients, enabling easy extraction of the final 3D geometry.
-* [Neural Radiance Fields (NeRF)](https://www.matthewtancik.com/nerf) (Mildenhall et al. 2020) proposes positional encodings, volumetric rendering & ray-direction conditioning for high-quality reconstruction of 
-single scenes, and has spawned a large amount of follow-up work on volumetric rendering of 3D implicit representations. 
-For a curated list of NeRF follow-up work specifically, see [awesome-NeRF](https://github.com/yenchenlin/awesome-NeRF)
-* [SDF-SRN: Learning Signed Distance 3D Object Reconstruction from Static Images](https://github.com/chenhsuanlin/signed-distance-SRN) (Lin et al. 2020), 
-demonstrates how we may train Scene Representation Networks from a single observation only.
-* [Pixel-NERF](https://alexyu.net/pixelnerf/) (Yu et al. 2020) proposes to condition a NeRF on local features lying on camera rays,
- extracted from contact images, as proposed in PiFU (see "from 3D supervision").
-* [Multiview neural surface reconstruction by disentangling geometry and appearance](https://lioryariv.github.io/idr/) (Yariv et al. 2020)
-demonstrates sphere-tracing with positional encodings for reconstruction of complex 3D scenes, and proposes a surface normal and view-direction
-dependent rendering network for capturing view-dependent effects.
-
-One may also encode geometry and appearance of a 3D scene via its 360-degree, 4D light field. This obviates the need for 
-ray-marching and enables real-time rendering and fast training with minimal memory footprint, but requires additional machinery to ensure
-multi-view consistency.
-* [Light Field Networks: Neural Scene Representations with Single-Evaluation Rendering](vsitzmann.github.io/lfns/) (Sitzmann et al. 2021) 
-proposes to represent 3D scenes via their 360-degree light field parameterized as a neural implicit representation.
 
 ### From 3D supervision
 * [Pifu: Pixel-aligned implicit function for high-resolution clothed human digitization](https://shunsukesaito.github.io/PIFu/) (Saito et al. 2019)
@@ -125,7 +80,7 @@ achieves photo-realistic, real-time re-rendering.
 * [Texture Fields: Learning Texture Representations in Function Space](https://autonomousvision.github.io/texture-fields/) (Oechsle et al.)
 
 ### For dynamic scenes
-* [Occupancy flow: 4d reconstruction by learning particle dynamics](https://avg.is.tuebingen.mpg.de/publications/niemeyer2019iccv) 
+- [ ] [Occupancy flow: 4d reconstruction by learning particle dynamics](https://avg.is.tuebingen.mpg.de/publications/niemeyer2019iccv) 
 (Niemeyer et al. 2019) first proposed to learn a space-time neural implicit representation by representing a 4D warp field 
 with an implicit neural representation.
 
@@ -164,14 +119,6 @@ The following papers condition a deep signed distance function on local patches:
 features learned by Scene Representation Networks for weakly supervised semantic segmentation of 3D objects.
 * [Neural Descriptor Fields: SE(3)-Equvariant Object Representations for Manipulation](https://yilundu.github.io/ndf/) 
 leverages features learned by occupancy networks to establish correspondence, used for robotics imitation learning.
-  
-## Robotics Applications
-* [ 3D Neural Scene Representations for Visuomotor Control](https://3d-representation-learning.github.io/nerf-dy/)
-  learns latent state space for robotics tasks using neural rendering, and subsequently expresses policies in that latent space.
-* [Full-Body Visual Self-Modeling of Robot Morphologies ](https://robot-morphology.cs.columbia.edu/)
-  uses neural implicit geometry representation for learning a robot self-model, enabling space occupancy queries for given joint angles.
-* [Neural Descriptor Fields: SE(3)-Equvariant Object Representations for Manipulation](https://yilundu.github.io/ndf/)
-leverages neural fields & vector neurons as an object-centric representation that enables imitation learning of pick-and-place tasks, generalizing across SE(3) poses.
 
 ## Generalization & Meta-Learning with Neural Implicit Representations
 * DeepSDF, Occupancy Networks, IM-Net concurrently proposed conditioning via concatenation.
